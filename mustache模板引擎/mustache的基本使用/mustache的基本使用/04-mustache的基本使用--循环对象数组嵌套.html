@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="IE=edge"
+  >
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="box"></div>
+  <script src="../jslib/mustache.js"></script>
+  <script>
+    console.log(Mustache);
+    // {{#arr}} 表示要循环数据中的arr数组，{{/arr}}循环结尾
+    var templateStr = `
+    <ul>
+      {{#arr}}
+        <li>
+          <div>{{name}}的基本信息</div>
+          <p>姓名：{{name}}</p>
+          <p>性别：{{sex}}</p>
+          <p>爱好：
+            <ol>
+              {{#hobby}}
+                <li>{{.}}</li>
+              {{/hobby}}  
+            </ol>  
+          </p>
+        </li>
+      {{/arr}}
+    </ul>`;
+    // 注意：数据中的数组名称要与模板字符串中的一致
+    let data = {
+      arr: [
+        { 'name': 'xiaoming', 'sex': 'nan', 'hobby': ['nnn', 'mmm', 'ppp'] },
+        { 'name': 'xiaohong', 'sex': 'nv', 'hobby': ['t', 'b'] }
+      ]
+    }
+    /**
+     * Mustache的render方法接收两个参数：
+     * 参数一：模板字符串
+     * 参数二：要渲染的数据
+     * 返回值：循环过后的dom字符串
+    */
+    let domStr = Mustache.render(templateStr, data);
+    console.log(domStr);
+    const boxDom = document.querySelector('.box');
+    boxDom.innerHTML = domStr;
+  </script>
+</body>
+
+</html>

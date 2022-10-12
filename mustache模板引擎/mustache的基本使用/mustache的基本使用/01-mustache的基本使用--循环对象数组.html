@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="IE=edge"
+  >
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="box"></div>
+  <script src="../jslib/mustache.js"></script>
+
+  <!-- 模板写法二 -->
+  <!-- 注意：type只要不是 text/javascript 就不会被浏览器执行，因此可以写任意字符 -->
+  <script
+    type="text/template"
+    id="mytemplate"
+  >
+    <ul>
+      {{#arr}}
+        <li>
+          <div>{{name}}的基本信息</div>
+          <p>姓名：{{name}}</p>
+          <p>性别：{{sex}}</p>
+        </li>
+      {{/arr}}
+    </ul>
+  </script>
+  <script>
+    console.log(Mustache);
+    // 模板写法一：
+    // {{#arr}} 表示要循环数据中的arr数组，{{/arr}}循环结尾
+    var templateStr = `
+    <ul>
+      {{#arr}}
+        <li>
+          <div>{{name}}的基本信息</div>
+          <p>姓名：{{name}}</p>
+          <p>性别：{{sex}}</p>
+        </li>
+      {{/arr}}
+    </ul>`;
+
+    // 模板二获取：
+    var mytemplateStr = document.getElementById('mytemplate').innerHTML;
+    // 注意：数据中的数组名称要与模板字符串中的一致
+    let data = {
+      arr: [
+        { 'name': 'xiaoming', 'sex': 'nan' },
+        { 'name': 'xiaohong', 'sex': 'nv' }
+      ]
+    }
+    /**
+     * Mustache的render方法接收两个参数：
+     * 参数一：模板字符串
+     * 参数二：要渲染的数据
+     * 返回值：循环过后的dom字符串
+    */
+    let domStr = Mustache.render(mytemplateStr, data);
+    console.log(domStr);
+    const boxDom = document.querySelector('.box');
+    boxDom.innerHTML = domStr;
+  </script>
+</body>
+
+</html>

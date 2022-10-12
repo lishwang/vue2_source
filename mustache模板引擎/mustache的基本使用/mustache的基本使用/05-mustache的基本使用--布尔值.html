@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="IE=edge"
+  >
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="box"></div>
+  <script src="../jslib/mustache.js"></script>
+  <script>
+    console.log(Mustache);
+    // {{#trueString}} 数据中trueString为true时展示其包裹的内容，否则不展示
+    var templateStr = `
+      {{#trueString}}
+        <h1>你好</h1>
+      {{/trueString}};
+      {{#falseString}}
+        <h1>世界</h1>
+      {{/falseString}}`;
+    // 注意：数据中的数组名称要与模板字符串中的一致
+    let data = {
+      'trueString': true,
+      'falseString': false,
+    }
+    /**
+     * Mustache的render方法接收两个参数：
+     * 参数一：模板字符串
+     * 参数二：要渲染的数据
+     * 返回值：循环过后的dom字符串
+    */
+    let domStr = Mustache.render(templateStr, data);
+    console.log(domStr);
+    const boxDom = document.querySelector('.box');
+    boxDom.innerHTML = domStr;
+  </script>
+</body>
+
+</html>

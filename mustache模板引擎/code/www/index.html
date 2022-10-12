@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="IE=edge"
+  >
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <!-- 引用虚拟打包路径 -->
+  <script src="/xuni/bundle.js"></script>
+  <script>
+    // const templateStr = `<h1>今天买了{{aaa}}，好{{mood}}啊，花了{{count.a}}元</h1>`;
+    // const data = {
+    //   'aaa': 'apple',
+    //   'mood': 'happy',
+    //   'count': {
+    //     'a': 123
+    //   }
+    // };
+    const templateStr = `<ul>
+      {{#arr}}
+        <li>
+          <div>{{name}}的基本信息</div>
+          <p>姓名：{{name}}</p>
+          <p>性别：{{sex}}</p>
+          <p>爱好：
+            <ol>
+              {{#hobby}}
+                <li>{{hobbyName}}
+                  <ol>
+                    {{#hobbyList}}
+                      <li>{{.}}</li>
+                    {{/hobbyList}}  
+                  </ol>   
+                </li>
+              {{/hobby}}  
+            </ol>  
+          </p>
+        </li>
+      {{/arr}}
+    </ul>`;
+    const data = {
+      arr: [
+        {
+          'name': 'xiaoming',
+          'sex': 'nan',
+          'hobby': [
+            {
+              'hobbyName': 'aaa',
+              'hobbyList': ['nnn', 'mmm', 'ppp']
+            }
+          ]
+        },
+        {
+          'name': 'xiaohong',
+          'sex': 'nv',
+          'hobby': [
+            {
+              'hobbyName': 'bbb',
+              'hobbyList': ['1', '2', '3']
+            }
+          ]
+        }
+      ],
+    };
+    WLS_TemplateEngine.render(templateStr, data);
+  </script>
+</body>
+
+</html>

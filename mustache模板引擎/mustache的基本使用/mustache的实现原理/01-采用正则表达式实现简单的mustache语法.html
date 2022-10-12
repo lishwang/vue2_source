@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="IE=edge"
+  >
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="box"></div>
+  <script>
+    var templateStr = `<h1>我今天买了一个{{app}}，好{{mood}}</h1>`;
+    // 注意：数据中的数组名称要与模板字符串中的一致
+    let data = {
+      app: 'ipd',
+      mood: 'happy'
+    }
+    /**
+     * render方法接收两个参数：
+     * 参数一：模板字符串
+     * 参数二：要渲染的数据
+     * 返回值：循环过后的dom字符串
+    */
+    // replace() 的第二个参数可以是一个函数，这个函数提供捕获的东西的参数，就是$1，
+    // 然后结合data数据对象，即可进行智能的替换；
+    function render (templateStr, data) {
+      return templateStr.replace(/\{\{(\w+)\}\}/g, function (str, $1, c, d) {
+        console.log(str, $1, c, d);
+        return data[$1];
+      })
+    };
+    let domStr = render(templateStr, data);
+    console.log(domStr);
+    const boxDom = document.querySelector('.box');
+    boxDom.innerHTML = domStr;
+  </script>
+</body>
+
+</html>
