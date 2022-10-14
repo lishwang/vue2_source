@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="IE=edge"
+  >
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <link
+    rel="icon"
+    href="/favicon.ico"
+  />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <!-- 引用这种未打包的js文件，浏览器会报错，因为有无法识别的 module ，加上 type=module ，会解决这个问题，
+    但还有很多浏览器无法识别的问题存在，因此这种直接引入的方式行不通，需要先进行 webpack 打包后引入 打包后的文件 -->
+  <!-- <script src="./src/index.js"></script> -->
+
+  <!-- 引用 webpack 打包后的文件 -->
+  <!-- <script src="./dist/main.js"></script> -->
+  <script src="./build/js/bundle.js"></script>
+</body>
+
+</html>

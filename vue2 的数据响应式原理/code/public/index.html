@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="IE=edge"
+  >
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <!-- BASE_URL webpack打包时会报错，需要引入webpack内置的 DefinePlugin 方法进行插件配置 -->
+  <link
+    rel="icon"
+    href="<%= BASE_URL %>favicon.ico"
+  >
+  <!-- title 中文字可以在 htmlWebpackPlugin 插件中配置 -->
+  <title>
+    <%=
+      htmlWebpackPlugin.options.title
+      %
+    >
+  </title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <button id="btn">+++</button>
+  <!-- <template id="my-app">
+    <h2>这是vue编译出来的</h2>
+    <h2>{{message}}</h2>
+  </template> -->
+</body>
+
+</html>
