@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="IE=edge"
+  >
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 
+    指针思想：试寻找字符串中，连续重复次数最多的字符；
+    示例：'aaabbbbccccccccdd'
+    结果：'c'
+    分析：双指针法，指针就是下标，不是c语言中的指针，c语言中的指针可以操作内存，js中的指针就是一个下标位置；
+    i:0,
+    j:1,
+    1、如果i和j指向的字一样，那么i不动，j后移；
+    2、如果i和j指向的字不一样，此时说明它们之间的字都是连续相同的，让i追上j，j后移；
+   -->
+  <script>
+    const str = 'aaabbbbccccccccdd';
+    let i = 0;
+    let j = 1;
+    let count = 0;
+    let maxRepeat;
+    while (i <= str.length - 1) {
+      if (str[i] !== str[j]) {
+        count = Math.max(count, j - i);
+        if (count === j - i) {
+          maxRepeat = str[i];
+        }
+        // console.log(j - i, str[i]);
+        i = j;
+      }
+      j++;
+    }
+    console.log(maxRepeat);
+  </script>
+</body>
+
+</html>

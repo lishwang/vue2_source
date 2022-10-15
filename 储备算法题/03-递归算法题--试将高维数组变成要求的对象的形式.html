@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="IE=edge"
+  >
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 
+    小技巧：只要出现了 规则复现 ，就要考虑递归；
+    注：栈的题目和递归非常像，如果用到词法分析，有限考虑用栈；
+   -->
+  <!-- 
+    递归算法题：将高维数组[1,2,[3,[4]],5]变成如下所示的对象
+    {
+      children: [
+        {value:1},
+        {value:2},
+        {
+          children:[
+            {value:3},
+            {
+              children:[
+                {value:4}
+              ]
+            }
+          ]
+        },
+        {value:5}
+      ]
+    }
+   -->
+
+  <script>
+    let arr = [1, 2, [3, [4]], 5];
+
+    // 方法一：遍历 + 递归
+    // function convert (arr) {
+    //   let result = [];
+    //   for (let i = 0; i < arr.length; i++) {
+    //     if (typeof arr[i] === 'number') {
+    //       result.push({ value: arr[i] });
+    //     } else if (Array.isArray(arr[i])) {
+    //       result.push({ children: convert(arr[i]) });
+    //     }
+    //   }
+    //   return result;
+    // }
+    // console.log({ children: convert(arr) });
+
+    // 方法二：map方法 + 递归
+    function convert (item) {
+      if (typeof item === 'number') {
+        return { value: item };
+      } else if (Array.isArray(item)) {
+        return { children: item.map(_item => convert(_item)) };
+      }
+    }
+
+    console.log(convert(arr));
+  </script>
+</body>
+
+</html>
