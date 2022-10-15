@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="IE=edge"
+  >
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    {{count}}<br />
+    <input
+      type="text"
+      v-model="count"
+    >
+    <ul
+      v-if="count < 15"
+      class="ul"
+    >
+      <li>a</li>
+      <li>b</li>
+      <li>c</li>
+    </ul>
+    <button onclick="add()">+++</button>
+  </div>
+
+  <!-- 引用虚拟打包路径 -->
+  <script src="/xuni/bundle.js"></script>
+  <script>
+    let vm = new Vue({
+      el: '#app',
+      data: {
+        count: 10,
+      },
+      watch: {
+        'count' () {
+          console.log('count改变了！！！');
+        }
+      }
+    });
+    console.log(vm);
+    function add () {
+      vm.count++;
+    }
+  </script>
+</body>
+
+</html>
